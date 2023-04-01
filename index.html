@@ -20,7 +20,7 @@
             var r = Math.round(Math.random() * 240 + 16);
             var g = Math.round(Math.random() * 240 + 16);
             var b = Math.round(Math.random() * 240 + 16);
-            var color = "#" + r.toString(16) + g.toString(16) + b.toString(16);
+            var color = "rgb(" + r + "," + g + "," + b + ")";
             return color;
         }
 
@@ -34,7 +34,7 @@
             if (event.button == 0) {
                 ctx.beginPath();
                 ctx.arc(posx, posy, radius, 0, 2 * Math.PI);
-                ctx.fillStyle = randColor() + "33";
+                ctx.fillStyle = randColor();
                 ctx.fill();
                 ctx.strokeStyle = "#000000";
                 ctx.stroke();
@@ -50,7 +50,7 @@
             var width = 100;
             var height = 50;
             if (event.button == 0) {
-                ctx.fillStyle = randColor() + "33";
+                ctx.fillStyle = randColor();
                 ctx.fillRect(posx - (width / 2), posy - (height / 2), width, height);
                 ctx.strokeStyle = "#000000";
                 ctx.strokeRect(posx - (width / 2), posy - (height / 2), width, height);
@@ -60,5 +60,6 @@
 </body>
 
 </html>
+
 
 
