@@ -1,37 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Drawing Program</title>
+    <title>D</title>
+    <style>
+        body {
+            background: linear-gradient(to right, #7f69cfaf, #73afd1, #61f4ff);
+        }
+    </style>
 </head>
+
 <body>
-    <title>Drawing Program</title>
-    <h1>Drawing Program</h1>
-    <canvas id="imgCanvas" width="600" height="400"
-    onclick="draw(event)"></canvas>
+    <canvas id="imgCanvas" width="1900" height="1000" onclick="drawCircle(event)" ondblclick="drawRect(event)"></canvas>
     <script>
+        function randColor() {
+            var r = Math.round(Math.random() * 240 + 16);
+            var g = Math.round(Math.random() * 240 + 16);
+            var b = Math.round(Math.random() * 240 + 16);
+            var color = "#" + r.toString(16) + g.toString(16) + b.toString(16);
+            return color;
+        }
 
-    function draw(event) {
-        var canvas = document.getElementById("imgCanvas")
-        var ctx = canvas.getContext("2d");
-        var rect = canvas.getBoundingClientRect();
-        var posx = event.clientX - rect.left;
-        var posy = event.clientY - rect.top;
-        ctx.fillStyle = "#aaaaff";
-        ctx.beginPath();
-        ctx.arc(posx, posy, 50, 0, Math.PI * 2);
-        ctx.fill();
-    }
+        function drawCircle(event) {
+            var canvas = document.getElementById("imgCanvas");
+            var ctx = canvas.getContext("2d");
+            var rect = canvas.getBoundingClientRect();
+            var posx = event.clientX - rect.left;
+            var posy = event.clientY - rect.top;
+            var radius = 25;
+            if (event.button == 0) {
+                ctx.beginPath();
+                ctx.arc(posx, posy, radius, 0, 2 * Math.PI);
+                ctx.fillStyle = randColor() + "33";
+                ctx.fill();
+                ctx.strokeStyle = "#000000";
+                ctx.stroke();
+            }
+        }
 
+        function drawRect(event) {
+            var canvas = document.getElementById("imgCanvas");
+            var ctx = canvas.getContext("2d");
+            var rect = canvas.getBoundingClientRect();
+            var posx = event.clientX - rect.left;
+            var posy = event.clientY - rect.top;
+            var width = 100;
+            var height = 50;
+            if (event.button == 0) {
+                ctx.fillStyle = randColor() + "33";
+                ctx.fillRect(posx - (width / 2), posy - (height / 2), width, height);
+                ctx.strokeStyle = "#000000";
+                ctx.strokeRect(posx - (width / 2), posy - (height / 2), width, height);
+            }
+        }
     </script>
-
-
-
-
-
-
-        
 </body>
+
 </html>
+
+
